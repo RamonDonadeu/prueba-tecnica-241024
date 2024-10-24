@@ -1,6 +1,6 @@
 import getRandomCoordinates from "~/utils/getRandomCoordinates";
-const ENVIRONMENTS = ["indoor", "outdoor", "vehicle"];
-const CARRIERS = ["orange", "movistar", "vodafone"];
+const ENVIRONMENTS = ["INDOOR", "OUTDOOR", "VEHICLE"];
+const CARRIERS = ["ORANGE", "MOVISTAR", "VODAFONE"];
 const NUMBER_OF_EVENTS = 10000;
 const xAxis = { min: -4.12719, max: -3.258868 }
 const yAxis = { min: 40.187386, max: 40.647991 }
