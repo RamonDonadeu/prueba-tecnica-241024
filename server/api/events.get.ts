@@ -1,7 +1,28 @@
-export default defineEventHandler((event) =>
-  // Debe mandar un listado de coordenadas aleatorias generadas en cada llamada
-  // Las coordenadas deberán estar dentro del BBox [-4.12719,40.187386,-3.258868,40.647991]
-  // Cada coordenada deberá tener aleatoriamente una propiedad 'type' que será alguna de las siguientes: ['indoor', 'outdoor', 'vehicle']]
+import getRandomCoordinates from "~/utils/getRandomCoordinates";
+const ENVIRONMENTS = ["indoor", "outdoor", "vehicle"];
+const CARRIERS = ["orange", "movistar", "vodafone"];
+const NUMBER_OF_EVENTS = 10000;
+const xAxis = { min: -4.12719, max: -3.258868 }
+const yAxis = { min: 40.187386, max: 40.647991 }
 
-  []
-);
+function generateData() {
+  return Array.from({ length: NUMBER_OF_EVENTS }, (_, i) => {
+    return {
+      type: "Feature" as const,
+      properties: {
+        carrier: CARRIERS[Math.floor(Math.random() * CARRIERS.length)],
+        environment: ENVIRONMENTS[Math.floor(Math.random() * ENVIRONMENTS.length)]
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [
+          getRandomCoordinates(xAxis.min, xAxis.max), getRandomCoordinates(yAxis.min, yAxis.max)
+        ]
+      }
+    }
+  })
+}
+// Debe mandar un listado de coordenadas aleatorias generadas en cada llamada
+export default defineEventHandler((event) => {
+  return generateData()
+})
