@@ -37,7 +37,7 @@ onMounted(() => {
             type: "geojson",
             data: {
               type: "FeatureCollection",
-              features: [],
+              features: props.events,
             },
           },
           bbox: {
@@ -81,6 +81,26 @@ onMounted(() => {
             paint: {
               "line-color": "#33632d",
               "line-width": 3,
+            },
+          },
+          {
+            id: "events",
+            source: "events",
+            type: "circle",
+            paint: {
+              "circle-radius": 4,
+              "circle-stroke-width": 2,
+              "circle-color": [
+                "match",
+                ["get", "carrier"],
+                "MOVISTAR",
+                "rgb(1, 92, 132)",
+                "VODAFONE",
+                "rgb(228, 2, 15)",
+                "ORANGE",
+                "rgb(255, 121, 0)",
+                "#ff0000",
+              ],
             },
           },
           // Implementar aqui la layer para events
