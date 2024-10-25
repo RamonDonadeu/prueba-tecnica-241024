@@ -17,9 +17,20 @@ const props = defineProps<{
   >[];
   sortBy: "environment" | "carrier";
 }>();
-
+watch(
+  () => props,
+  () => {
+    createTableData();
+  },
+  { deep: true }
+);
 onMounted(() => {
-  const totalValues = props.events.length;
+  createTableData();
+});
+
+function createTableData() {
+  if (!props.events) return;
+  const totalValues = props.events?.length;
   const grouping = Object.groupBy(
     props.events,
     (feature: Feature) => feature.properties?.[props.sortBy] ?? undefined
@@ -32,5 +43,5 @@ onMounted(() => {
       percentile: (grouping[key].length / totalValues) * 100 + "%",
     });
   });
-});
+}
 </script>

@@ -9,12 +9,8 @@
 
 <script setup lang="ts">
 const { data: events, status, refresh } = useLazyFetch("/api/events");
-const loading = computed(() => status.value === "pending");
 
 useSeoMeta({
   title: "Estadísticas de eventos",
 });
-
-
-
 </script>
