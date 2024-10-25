@@ -10,6 +10,7 @@
       b-navbar-nav
         b-nav-item(to="/", active-class="active fw-bold") #[icon(name="streamline:manual-book")] Instrucciones
         b-nav-item(to="/map", active-class="active fw-bold") #[icon(name="material-symbols:map-outline")] Mapa
+        b-nav-item(to="/stats", active-class="active fw-bold") #[icon(name="material-symbols:query-stats")] Estadísticas
   .flex-grow-1
     slot
 </template>

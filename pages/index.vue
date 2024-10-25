@@ -25,6 +25,11 @@
             li #[color-preview(color="#E4020F")] VODAFONE
             li #[color-preview(color="#FF7900")] ORANGE
         li Si se escoge por entorno, cada uno debe mostrar un color distinto, a elección del programador
+        span Se han elegido los siguientes colores:
+          ul
+              li #[color-preview(color="#bb4600")] INDOOR
+              li #[color-preview(color="#02a40f")] OUTDOOR
+              li #[color-preview(color="#9e00ad")] VEHICLE
         li El cambio de color debe ser en directo (reactivo), no se puede recargar la página. Igual que al pulsar el botón actualizar, que hará una nueva petición al backend.
         li Añadir el control de zoom al mapa
       p Por último:
