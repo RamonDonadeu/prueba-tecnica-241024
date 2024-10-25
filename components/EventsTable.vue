@@ -30,6 +30,7 @@ onMounted(() => {
 
 function createTableData() {
   if (!props.events) return;
+  data.value = [];
   const totalValues = props.events?.length;
   const grouping = Object.groupBy(
     props.events,
