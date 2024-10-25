@@ -21,7 +21,19 @@ const props = defineProps<{
 const mapRef = shallowRef<Maplibre | null>(null);
 
 onMounted(() => {
-  mapRef.value = markRaw(
+  mapRef.value = createMap();
+});
+
+watch(
+  () => props,
+  () => {
+    mapRef.value = createMap();
+  },
+  { deep: true }
+);
+
+function createMap() {
+  return markRaw(
     new Maplibre({
       container: "map",
       center: [-3.706512, 40.415587],
@@ -83,10 +95,14 @@ onMounted(() => {
               "line-width": 3,
             },
           },
+          // Implementar aqui la layer para events
           {
-            id: "events",
+            id: "carriers",
             source: "events",
             type: "circle",
+            layout: {
+              visibility: props.colorBy === "carrier" ? "visible" : "none",
+            },
             paint: {
               "circle-radius": 4,
               "circle-stroke-width": 2,
@@ -103,12 +119,32 @@ onMounted(() => {
               ],
             },
           },
-          // Implementar aqui la layer para events
+          {
+            id: "environments",
+            source: "events",
+            type: "circle",
+            layout: {
+              visibility: props.colorBy === "carrier" ? "visible" : "none",
+            },
+            paint: {
+              "circle-radius": 4,
+              "circle-stroke-width": 2,
+              "circle-color": [
+                "match",
+                ["get", "environment"],
+                "INDOOR",
+                "#bb4600",
+                "OUTDOOR",
+                "#02a40f",
+                "VEHICLE",
+                "#9e00ad",
+                "#ff0000",
+              ],
+            },
+          },
         ],
       },
     })
   );
-});
-
-// Implementar la reactividad a los cambios de props
+}
 </script>
