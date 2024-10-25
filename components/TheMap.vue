@@ -124,7 +124,7 @@ function createMap() {
             source: "events",
             type: "circle",
             layout: {
-              visibility: props.colorBy === "carrier" ? "visible" : "none",
+              visibility: props.colorBy === "env" ? "visible" : "none",
             },
             paint: {
               "circle-radius": 4,
