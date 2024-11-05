@@ -10,6 +10,12 @@
 <script setup lang="ts">
 const { data: events, status, refresh } = useLazyFetch("/api/events");
 
+onBeforeMount(() => {
+  events.value = [];
+});
+onMounted(() => {
+  console.log(events.value);
+});
 useSeoMeta({
   title: "Estadísticas de eventos",
 });
